@@ -1,13 +1,10 @@
 const $ = new Env('领取优惠券');
 
-
 //cron  55 0,1,6-23 * * *
 //jd ck
-//Node.js用户请在jdCookie.js处填写jdck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 const apiList = $.isNode() ? require('./jdYhqApiList.js').apiList : [];
-//IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 
 //下面参数可根据自己情况修改
@@ -23,7 +20,7 @@ let jdNotify = true;//是否通知，false关闭通知推送，true打开通知�
 let canTaskFlag=[];//是否继续领取
 let TgCkArray=[];//需要跳过领取的ck
 let lqSucArray=[];//领取成功的账号
-let AllEendCode="|A9|A6|A14|D2|";//全部结束代码 A8还未开始 应该执行
+let AllEendCode="|A9|A6|A14|D2|";//全部结束代码
 let PEendCode="|A1|A13|A19|A26|A28|";//个人跳过
 let JDTimes=new Date().getTime();//JD时间
 let apiArray=[];//本次需要抢的优惠券
@@ -44,10 +41,9 @@ if ($.isNode()) {
     return;
   }
  
-  let nextHour=nextHourF();//下一个整点时间
+  let nextHour=nextHourF();
   console.log("下次抢券时间："+nextHour+":00:00");
   for(var al in apiList){
-      //判断该优惠券是否需要抢
       if(checkYhq(apiList[al],nextHour)&&apiArray.length<maxQq){
           apiArray.push(apiList[al]);
           console.log("名称："+apiList[al].qName);
@@ -64,11 +60,11 @@ if ($.isNode()) {
       console.log(parseInt(xcTimes/60/1000)+"分后才开始，时间设置错误或任务延迟时间过多！");
       return;
   }
-  if(xcTimes>0){//差距10分钟以上立即执行
+  if(xcTimes>0){
       console.log(parseInt(xcTimes/60/1000)+"分后开始任务，请不要结束任务！");
       await $.wait(xcTimes);
   }
-  for(let an in apiArray){//需要领取的优惠券
+  for(let an in apiArray){
       doAPIList(an);
   }
 })()
@@ -81,8 +77,8 @@ if ($.isNode()) {
 
 async function doAPIList(an){
     canTaskFlag[an]=true;
-    TgCkArray[an]=[];//需要跳过领取的ck
-    lqSucArray[an]=[];//领取成功的账号
+    TgCkArray[an]=[];
+    lqSucArray[an]=[];
     //console.log("\n\n******开始领券【"+apiArray[an].qName+"】******");
     for(let cn=1;cn<=tryNum;cn++){
       if(canTaskFlag[an]&&TgCkArray.length<cookiesArr.length){
@@ -154,16 +150,15 @@ function doApiTask(an,ckindex) {
                 console.log(`\n\n*${apiArray[an].qName}_【账号${ckindex+1}】${userName}*`);
                 data = JSON.parse(data);
                 let retMsg=data.subCodeMsg;
-                let subCode="|"+data.subCode+"|";
-                //A1成功 A8还未开始A13已领取 A19A28黑号 跳过 A9结束 A14今日没有 D2领取完 所有结束
+                let subCode="|"+data.subCode+"|";             
                 //console.log(subCode);
-                 if(data.subCode=="A1"){//领取成功
+                 if(data.subCode=="A1"){
                     lqSucArray[an].push(ckindex);
                 }
-                if(AllEendCode.indexOf(subCode)>-1){//活动结束
+                if(AllEendCode.indexOf(subCode)>-1){
                     canTaskFlag[an]=false;
                     console.log(timeFormat()+":"+retMsg);
-                }else if(PEendCode.indexOf(subCode)>-1){//领取成功
+                }else if(PEendCode.indexOf(subCode)>-1){
                     TgCkArray[an].push(ckindex);
                     console.log(timeFormat()+":"+retMsg);
                 }else{//继续
@@ -172,7 +167,7 @@ function doApiTask(an,ckindex) {
                 
             }
         } catch (e) {
-            TgCkArray[an].push(ckindex);//异常也跳过改账号
+            TgCkArray[an].push(ckindex);
             $.logErr(e, resp)
         } finally {
             resolve(data);
@@ -184,7 +179,6 @@ function doApiTask(an,ckindex) {
   })
 }
 function getJDTime(){
-    //{"currentTime":"2022-02-08 23:03:02","currentTime2":"1644332582990","returnMsg":"empty parameter ids","code":"0","subCode":"1-3"}
      return new Promise(resolve => {
       $.post({url:"https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5"}, async (err, resp, data) => {
         try {
@@ -206,9 +200,7 @@ function getJDTime(){
   
   })
 }
-//判断该券是否需要抢
 function checkYhq(entity,hour){
-    //活动未结束
     if(entity.endDate&&(new Date(entity.endDate+" 23:59:59").getTime()>new Date().getTime())){
         let qTimeArr=entity.qTime.split(",");
         if(qTimeArr.length>0&&qTimeArr.includes(hour+"")){
@@ -230,7 +222,6 @@ function getApiUrl(an,ckindex) {
     }
   }
 }
-//计算距离下一次整点的时间间隔
 function jgNextHourF(){
   let newDate=timeFormat().substr(0,13)+":00:00";//计算当前整点时间
   let dataCurPar = Date.parse(new Date(newDate))+60*60*1000;//转换为时间戳+3600秒
