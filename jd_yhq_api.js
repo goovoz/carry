@@ -1,6 +1,6 @@
 const $ = new Env('领取优惠券');
 
-//cron  55 0,1,6-23 * * *
+//cron  55 * * * *
 //jd ck
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';

@@ -11,5 +11,5 @@ ql repo https://gitee.com/cxtwg2/jdYhq.git "jd_" "" "^jd[^_]"
 
 领取优惠券 cron请修改为
 
-55 0,1,6-23 * * *
+55 * * * *
 
