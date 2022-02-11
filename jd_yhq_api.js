@@ -1,5 +1,5 @@
 const $ = new Env('领取优惠券');
-
+//tg群 https://t.me/+fQp6-4rbAE5lNjU1
 //cron  55 * * * *
 //jd ck
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
