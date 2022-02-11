@@ -81,7 +81,7 @@ async function doAPIList(an){
     lqSucArray[an]=[];
     //console.log("\n\n******开始领券【"+apiArray[an].qName+"】******");
     for(let cn=1;cn<=tryNum;cn++){
-      if(canTaskFlag[an]&&TgCkArray.length<cookiesArr.length){
+      if(canTaskFlag[an]&&TgCkArray[an].length<cookiesArr.length){
         console.log("\n\n***开始领券【"+apiArray[an].qName+"】第"+cn+"次请求***");
         for (let i = 0; i < cookiesArr.length&&i<maxAccount; i++) {
          if(canTaskFlag[an]){
