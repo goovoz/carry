@@ -15,9 +15,9 @@ let qqjgTime=250;//抢券间隔 单位毫秒 请尽量不要低于200
 let maxAccount=8;//默认抢前多少个账号的券 不要大于10 除非你间隔设置大点 线程设置少点
 let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
 
-//因为每次拉库会覆盖所有增加环境变量
+//因为每次拉库会覆盖所有增加环境变量 不要修改上面的值了
 //环境变量名称为  YHQ_API
-//环境变量为 3,1,3,250,8  五个值不能少英文逗号隔开 分别对应 重试次数,整点抢几种类型券,最大线程数,抢券间隔,默认抢前几个账号的券
+//环境变量值为 3,1,3,250,8  五个值不能少英文逗号隔开 分别对应 重试次数,整点抢几种类型券,最大线程数,抢券间隔,默认抢前几个账号的券
 if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API.split(",")==5){
 	console.log("读取环境变量成功："+process.env.YHQ_API);
 	let YHQ_API_ARR=process.env.YHQ_API.split(",");
