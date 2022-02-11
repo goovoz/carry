@@ -85,7 +85,7 @@ if ($.isNode()) {
 		  console.log("\n************************\n");
 		  console.log(tips);
 	  }
-	  if(jdNotify){
+	  if(jdNotify&&tips){
 	  	 await notify.sendNotify($.name, tips)
 	  }
   }
