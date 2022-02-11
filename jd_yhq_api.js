@@ -67,6 +67,28 @@ if ($.isNode()) {
   for(let an in apiArray){
       doAPIList(an);
   }
+  //处理通知
+  await $.wait(2*1000);
+  for(let an in apiArray){
+	  let tips="";
+	  if(lqSucArray[an].length>0){
+		  if(apiArray[an].qName){
+			  tips+="\n券【"+apiArray[an].qName+"】";
+		  }
+		  tips+="成功领取的用户有：";
+		  for(var ii in lqSucArray[an]){
+			  cookie=cookiesArr[lqSucArray[an][ii]];
+			  let userName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+			  tips+=`\n${lqSucArray[an][ii]}、${userName}`;
+			  
+		  }
+		  console.log("\n************************\n");
+		  console.log(tips);
+	  }
+	  if(jdNotify){
+	  	 await notify.sendNotify($.name, tips)
+	  }
+  }
 })()
 	.catch((e) => {
 		$.log("", `❌ ${$.name}, 失败! 原因: ${e}!`, "");
@@ -96,8 +118,8 @@ async function doAPIList(an){
                    if(nowIndex%maxXc==0){
                       await $.wait(qqjgTime);
                   }else{
-                      //默认间隔20毫秒防止黑号
-                      await $.wait(20);
+                      //默认间隔30毫秒防止黑号
+                      await $.wait(30);
                   }
                 }
                nowIndex++;
