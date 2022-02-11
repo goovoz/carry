@@ -7,7 +7,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const apiList = $.isNode() ? require('./jdYhqApiList.js').apiList : [];
 let cookiesArr = [], cookie = '';
 
-//下面参数可根据自己情况修改
+//如需修改下面的值请增加环境变量
 let tryNum=3;//券最大重试次数 每个账号尝试几次
 let maxQq=1;//每个整点最多抢几种类型的券
 let maxXc=3;//最大线程数 maxQq如果大于1请缩小该值
@@ -15,6 +15,18 @@ let qqjgTime=250;//抢券间隔 单位毫秒 请尽量不要低于200
 let maxAccount=8;//默认抢前多少个账号的券 不要大于10 除非你间隔设置大点 线程设置少点
 let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
 
+//因为每次拉库会覆盖所有增加环境变量
+//环境变量名称为  YHQ_API
+//环境变量为 3,1,3,250,8  五个值不能少英文逗号隔开 分别对应 重试次数,整点抢几种类型券,最大线程数,抢券间隔,默认抢前几个账号的券
+if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API.split(",")==5){
+	console.log("读取环境变量成功："+process.env.YHQ_API);
+	let YHQ_API_ARR=process.env.YHQ_API.split(",");
+	tryNum=parseInt(YHQ_API_ARR[0]);
+	maxQq=parseInt(YHQ_API_ARR[1]);
+	maxXc=parseInt(YHQ_API_ARR[2]);
+	qqjgTime=parseInt(YHQ_API_ARR[3]);
+	maxAccount=parseInt(YHQ_API_ARR[4]);
+}
 
 //下面参数不需要修改
 let canTaskFlag=[];//是否继续领取
