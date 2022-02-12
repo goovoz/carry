@@ -67,7 +67,7 @@ if ($.isNode()) {
      return;
   }
   await getJDTime();
-  let xcTimes=jgNextHourF()+(new Date().getTime()-JDTimes)-100;//修正延迟
+  let xcTimes=jgNextHourF()+(new Date().getTime()-JDTimes)-200;//修正延迟
   if(xcTimes>30*60*1000){
       console.log(parseInt(xcTimes/60/1000)+"分后才开始，时间设置错误或任务延迟时间过多！");
       return;
