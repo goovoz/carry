@@ -67,7 +67,7 @@ if ($.isNode()) {
      return;
   }
   await getJDTime();
-  let xcTimes=jgNextHourF()+(new Date().getTime()-JDTimes);//修正延迟
+  let xcTimes=jgNextHourF()+(new Date().getTime()-JDTimes)-200;//修正延迟
   if(xcTimes>30*60*1000){
       console.log(parseInt(xcTimes/60/1000)+"分后才开始，时间设置错误或任务延迟时间过多！");
       return;
@@ -205,7 +205,7 @@ function getJDTime(){
                 data = JSON.parse(data);
                 if(data.code=="0"){
 					let postHsTime=(new Date().getTime()-startQqStartT);//请求耗时
-                    JDTimes=parseInt(data.currentTime2)+postHsTime-200;//应该需要加上网络耗时 加上修正时间
+                    JDTimes=parseInt(data.currentTime2);
 					console.log("请求耗时："+postHsTime+"毫秒");
                     console.log("获取JD时间成功："+data.currentTime+"与服务器时间差为："+(new Date().getTime()-JDTimes)+"毫秒");
                 }
