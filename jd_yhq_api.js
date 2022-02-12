@@ -91,7 +91,7 @@ if ($.isNode()) {
 		  for(var ii in lqSucArray[an]){
 			  cookie=cookiesArr[lqSucArray[an][ii]];
 			  let userName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-			  tips+=`\n${lqSucArray[an][ii]}、${userName}`;
+			  tips+=`\n${lqSucArray[an][ii]+1}、${userName}`;
 			  
 		  }
 		  console.log("\n************************\n");
