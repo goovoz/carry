@@ -13,12 +13,12 @@ let maxQq=1;//每个整点最多抢几种类型的券
 let maxXc=3;//最大线程数 maxQq如果大于1请缩小该值
 let qqjgTime=250;//抢券间隔 单位毫秒 请尽量不要低于200
 let maxAccount=8;//默认抢前多少个账号的券 不要大于10 除非你间隔设置大点 线程设置少点
-let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
+
 
 //因为每次拉库会覆盖所有增加环境变量 不要修改上面的值了
 //环境变量名称为  YHQ_API
 //环境变量值为 3,1,3,250,8  五个值不能少英文逗号隔开 分别对应 重试次数,整点抢几种类型券,最大线程数,抢券间隔,默认抢前几个账号的券
-if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API.split(",").length==5){
+if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API.split(",").length>=5){
 	console.log("读取环境变量成功："+process.env.YHQ_API);
 	let YHQ_API_ARR=process.env.YHQ_API.split(",");
 	tryNum=parseInt(YHQ_API_ARR[0]);
@@ -27,6 +27,8 @@ if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API
 	qqjgTime=parseInt(YHQ_API_ARR[3]);
 	maxAccount=parseInt(YHQ_API_ARR[4]);
 }
+
+let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
 
 //下面参数不需要修改
 let canTaskFlag=[];//是否继续领取
@@ -37,6 +39,7 @@ let PEendCode="|A1|A13|A19|A26|A28|";//个人跳过
 let JDTimes=new Date().getTime();//JD时间
 let apiArray=[];//本次需要抢的优惠券
 let nowIndex=0;//当前运行数量
+let JDTimeJg=0;//京东时间与本地时间差
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -66,12 +69,16 @@ if ($.isNode()) {
      console.log('没有优惠券需要领取！');
      return;
   }
-  await getJDTime();
-  let xcTimes=jgNextHourF()+(new Date().getTime()-JDTimes)-200;//修正延迟
-  if(xcTimes>30*60*1000){
-      console.log(parseInt(xcTimes/60/1000)+"分后才开始，时间设置错误或任务延迟时间过多！");
-      return;
+  for(let jdTimeCs=0;jdTimeCs<3;jdTimeCs++){
+      await $.wait(3*1000);
+      await getJDTime();
   }
+  console.log("京东时间与本地时间差为："+JDTimeJg+"毫秒");
+  let xcTimes=jgNextHourF()+JDTimeJg-100;//修正延迟
+  //if(xcTimes>30*60*1000){
+     // console.log(parseInt(xcTimes/60/1000)+"分后才开始，时间设置错误或任务延迟时间过多！");
+      //return;
+  //}
   if(xcTimes>0){
       console.log(parseInt(xcTimes/60/1000)+"分后开始任务，请不要结束任务！");
       await $.wait(xcTimes);
@@ -80,7 +87,7 @@ if ($.isNode()) {
       doAPIList(an);
   }
   //处理通知
-  await $.wait(10*1000);
+  await $.wait(15*1000);
   for(let an in apiArray){
 	  let tips="";
 	  if(lqSucArray[an].length>0){
@@ -137,7 +144,7 @@ async function doAPIList(an){
                 }
                nowIndex++;
                 //await doApiTask(an,i);//轮流请求账号
-               doApiTask(an,i);//同时多线程请求账号 慎用
+               doApiTask(an,i);//同时多线程请求账号
             }
          }else{
              console.log("该券已无或者无账号需要请求！"); 
@@ -196,7 +203,7 @@ function doApiTask(an,ckindex) {
 }
 function getJDTime(){
      return new Promise(resolve => {
-	  let startQqStartT=new Date().getTime();
+	  //let startQqStartT=new Date().getTime();
       $.post({url:"https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5"}, async (err, resp, data) => {
         try {
             if (err) {
@@ -204,10 +211,13 @@ function getJDTime(){
             } else {//请求成功
                 data = JSON.parse(data);
                 if(data.code=="0"){
-					let postHsTime=(new Date().getTime()-startQqStartT);//请求耗时
-                    JDTimes=parseInt(data.currentTime2);
-					console.log("请求耗时："+postHsTime+"毫秒");
-                    console.log("获取JD时间成功："+data.currentTime+"与服务器时间差为："+(new Date().getTime()-JDTimes)+"毫秒");
+					//let postHsTime=(new Date().getTime()-startQqStartT);//请求耗时
+					//console.log("请求耗时："+postHsTime+"毫秒");
+					JDTimes=parseInt(data.currentTime2);
+                    //console.log("获取JD时间成功："+data.currentTime+"与服务器时间差为："+(new Date().getTime()-JDTimes)+"毫秒");
+                    if(JDTimeJg==0||(JDTimeJg!=0&&(new Date().getTime()-JDTimes)<JDTimeJg)){
+                        JDTimeJg=new Date().getTime()-JDTimes;
+                    }
                 }
             }
         } catch (e) {
