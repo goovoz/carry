@@ -80,7 +80,7 @@ if ($.isNode()) {
       doAPIList(an);
   }
   //处理通知
-  await $.wait(2*1000);
+  await $.wait(10*1000);
   for(let an in apiArray){
 	  let tips="";
 	  if(lqSucArray[an].length>0){
@@ -99,6 +99,7 @@ if ($.isNode()) {
 	  }
 	  if(jdNotify&&tips){
 	  	 await notify.sendNotify($.name, tips)
+		 tips="";
 	  }
   }
 })()
@@ -147,25 +148,6 @@ async function doAPIList(an){
          break;
      }
   }
-  if(lqSucArray[an].length>0){
-      let tips="";
-      if(apiArray[an].qName){
-          tips+="券【"+apiArray[an].qName+"】";
-      }
-      tips+="成功领取的用户有：";
-      for(var ii in lqSucArray[an]){
-          cookie=cookiesArr[lqSucArray[an][ii]];
-          let userName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-          tips+=`\n${userName}`;
-          
-      }
-      console.log("\n************************\n");
-      console.log(tips);
-      if(jdNotify){
-          await notify.sendNotify($.name, tips)
-      }
-  }
-
 }
 
 
