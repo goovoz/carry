@@ -74,11 +74,11 @@ if ($.isNode()) {
       await getJDTime();
   }
   console.log("京东时间与本地时间差为："+JDTimeJg+"毫秒");
-  let xcTimes=jgNextHourF()+JDTimeJg-100;//修正延迟
-  //if(xcTimes>30*60*1000){
-     // console.log(parseInt(xcTimes/60/1000)+"分后才开始，时间设置错误或任务延迟时间过多！");
-      //return;
-  //}
+  let xcTimes=jgNextHourF()+JDTimeJg-120;//修正延迟
+  if(xcTimes>30*60*1000){
+      console.log(parseInt(xcTimes/60/1000)+"分后才开始，cron设置错误或手动运行！");
+      return;
+  }
   if(xcTimes>0){
       console.log(parseInt(xcTimes/60/1000)+"分后开始任务，请不要结束任务！");
       await $.wait(xcTimes);
