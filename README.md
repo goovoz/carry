@@ -14,7 +14,7 @@ ql repo https://gitee.com/cxtwg2/jdYhq.git "jd_" "" "^jd[^_]"
 
 
 
-三、增加环境变量
+三、增加环境变量（不修改参数不需要增加）
 
 环境变量名称为  YHQ_API
 
