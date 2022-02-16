@@ -1,7 +1,5 @@
 
 # jdYhq
-jd_yhq_api.js 自己修改里面配置文件
-
 一、拉取优惠券
 
 cron 12 19 * * *
