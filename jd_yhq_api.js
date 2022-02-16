@@ -1,36 +1,43 @@
-const $ = new Env('领取优惠券');
 //tg群 https://t.me/+fQp6-4rbAE5lNjU1
 //cron  55 * * * *
+//如需增加自定义api请复制jdYhqApiList.js改名为jdYhqApiListMy.js删除里面的券重新添加
 //jd ck
+
+const $ = new Env('领取优惠券');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./sendNotify') : '';
-const apiList = $.isNode() ? require('./jdYhqApiList.js').apiList : [];
-let cookiesArr = [], cookie = '';
 
-//如需修改下面的值请增加环境变量
-let tryNum=3;//券最大重试次数 每个账号尝试几次
-let maxQq=1;//每个整点最多抢几种类型的券
-let maxXc=3;//最大线程数 maxQq如果大于1请缩小该值
-let qqjgTime=250;//抢券间隔 单位毫秒 请尽量不要低于200
-let maxAccount=8;//默认抢前多少个账号的券 不要大于10 除非你间隔设置大点 线程设置少点
-
-
-//因为每次拉库会覆盖所有增加环境变量 不要修改上面的值了
-//环境变量名称为  YHQ_API
-//环境变量值为 3,1,3,250,8  五个值不能少英文逗号隔开 分别对应 重试次数,整点抢几种类型券,最大线程数,抢券间隔,默认抢前几个账号的券
-if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API.split(",").length>=5){
-	console.log("读取环境变量成功："+process.env.YHQ_API);
-	let YHQ_API_ARR=process.env.YHQ_API.split(",");
-	tryNum=parseInt(YHQ_API_ARR[0]);
-	maxQq=parseInt(YHQ_API_ARR[1]);
-	maxXc=parseInt(YHQ_API_ARR[2]);
-	qqjgTime=parseInt(YHQ_API_ARR[3]);
-	maxAccount=parseInt(YHQ_API_ARR[4]);
+let apiList = $.isNode() ? require('./jdYhqApiList.js').apiList : [];
+let notify='';
+let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
+try{
+    notify = $.isNode() ? require('./sendNotify') : '';
+}catch(e){
+    jdNotify=false;
+    console.log("未发现sendNotify.js文件不会进行通知！");
 }
 
-let jdNotify = true;//是否通知，false关闭通知推送，true打开通知推送
+try{
+    //自定义api列表
+    const apiListMy = $.isNode() ? require('./jdYhqApiListMy.js').apiList : [];
+    if(apiListMy.length>0){
+        for(var alm in apiListMy){
+            if(apiListMy[alm].qName&&apiListMy[alm].qApi&&apiListMy[alm].qTime){
+                apiList.push(apiListMy[alm]);
+                console.log("加载自定义API:"+apiListMy[alm].qName);
+            }
+        }
+    }
+}catch(e){}
+//如需修改下面的值请增加环境变量 YHQ_API
+let tryNum=3;//券最大重试次数 每个账号尝试几次
+let maxQq=2;//每个整点最多抢几种类型的券
+let maxXc=3;//最大线程数 maxQq如果大于1请缩小该值
+let qqjgTime=250;//抢券间隔 单位毫秒 请尽量不要低于200
+let maxAccount=8;//默认抢前多少个账号的券 不要太大 除非你间隔设置大点 线程设置少点
+
 
 //下面参数不需要修改
+let cookiesArr = [], cookie = '';
 let canTaskFlag=[];//是否继续领取
 let TgCkArray=[];//需要跳过领取的ck
 let lqSucArray=[];//领取成功的账号
@@ -40,6 +47,19 @@ let JDTimes=new Date().getTime();//JD时间
 let apiArray=[];//本次需要抢的优惠券
 let nowIndex=0;//当前运行数量
 let JDTimeJg=0;//京东时间与本地时间差
+
+//因为每次拉库会覆盖所有增加环境变量 不要修改上面的值了
+//环境变量名称为  YHQ_API
+//环境变量值为 3,2,3,250,8  五个值不能少英文逗号隔开 分别对应 重试次数,整点抢几种类型券,最大线程数,抢券间隔,默认抢前几个账号的券
+if(process.env.YHQ_API&&process.env.YHQ_API.indexOf(",")>-1&&process.env.YHQ_API.split(",").length>=5){
+	console.log("读取环境变量成功："+process.env.YHQ_API);
+	let YHQ_API_ARR=process.env.YHQ_API.split(",");
+	tryNum=parseInt(YHQ_API_ARR[0]);
+	maxQq=parseInt(YHQ_API_ARR[1]);
+	maxXc=parseInt(YHQ_API_ARR[2]);
+	qqjgTime=parseInt(YHQ_API_ARR[3]);
+	maxAccount=parseInt(YHQ_API_ARR[4]);
+}
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -87,7 +107,7 @@ if ($.isNode()) {
       doAPIList(an);
   }
   //处理通知
-  await $.wait(15*1000);
+  await $.wait(30*1000);
   for(let an in apiArray){
 	  let tips="";
 	  if(lqSucArray[an].length>0){
@@ -230,7 +250,9 @@ function getJDTime(){
   })
 }
 function checkYhq(entity,hour){
-    if(entity.endDate&&(new Date(entity.endDate+" 23:59:59").getTime()>new Date().getTime())){
+    //没有时间直接返回true
+    if(!entity.endDate){return true;}
+    if(entity.endDate&&entity.qTime&&(new Date(entity.endDate+" 23:59:59").getTime()>new Date().getTime())){
         let qTimeArr=entity.qTime.split(",");
         if(qTimeArr.length>0&&qTimeArr.includes(hour+"")){
             return true;
