@@ -31,7 +31,7 @@ let apiList=[
 },    
 {
         "qName": "极速10-4",
-        "qTime": "8",
+        "qTime": "16",
         "lqSpace": 1,
         "endDate":"2022-02-28",
         "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%223H885vA4sQj6ctYzzPVix4iiYN2P%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3DFA278B2A37B4923F2E90E51B0BC5106AB64C5AD440B2F2FA0BA947098087B41471D301BA4C7443AFCC1BF9CAA4ED73CD_bingo%2CroleId%3D9B2FE4F49479DEF873FB476872C26800_bingo%2CstrengthenKey%3D16AC1C9F9C5A799B9F3AF3CF48BEE2ADA2831E619042C332ED9ECCC7B35C636FEC6010C9D0F0A9F20DF25A45F6F94EE9_bingo%22%7D&client=wh5"
