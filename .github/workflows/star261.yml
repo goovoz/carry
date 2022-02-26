@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync JD_Diy-chiupam
+      - name: sync star261
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
