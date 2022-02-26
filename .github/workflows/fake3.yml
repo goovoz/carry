@@ -23,6 +23,6 @@ jobs:
         if: env.PAT
         with:
           source_repo: "https://github.com/shufflewzc/faker3.git"
-          source_branch: "ma1n"
+          source_branch: "main"
           destination_branch: "fake3"
           github_token: ${{ secrets.PAT }}
