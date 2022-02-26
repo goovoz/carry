@@ -1,0 +1,28 @@
+name: jsNO1-sync
+on:
+  schedule:
+    - cron: '25 * * * *'
+  workflow_dispatch:
+  watch:
+    types: started
+  repository_dispatch:
+    types: sync-jsNO1
+jobs:
+  repo-sync:
+    env:
+      PAT: ${{ secrets.PAT }} 
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: sync JD_Diy-chiupam
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/jsNO1/e.git"
+          source_branch: "main"
+          destination_branch: "jsNO1"
+          github_token: ${{ secrets.PAT }}
