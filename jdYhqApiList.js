@@ -53,6 +53,14 @@ let apiList=[
     }
 	,             
    {
+        "qName": "携程980-50",
+        "qTime": "10",
+        "lqSpace": 1,
+        "endDate":"2022-03-31",
+        "qApi": "https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22%3A%223H885vA4sQj6ctYzzPVix4iiYN2P%22%2C%22from%22%3A%22H5node%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3Dg5u5icd7e5241468766c42fbe57a4f7f%2CroleId%3D70147779%22%2C%22mitemAddrId%22%3A%22%22%2C%22geo%22%3A%7B%22lng%22%3A%22%22%2C%22lat%22%3A%22%22%7D%7D&client=wh5"
+    }
+	,             
+   {
         "qName": "38节9.9支付券",
         "qTime": "10",//20
         "lqSpace": 1,
