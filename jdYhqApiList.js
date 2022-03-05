@@ -61,7 +61,7 @@ let apiList=[
     }
 	,             
    {
-        "qName": "38节9.9支付券",
+        "qName": "38节9支付券",
         "qTime": "10",
         "lqSpace": 1,
         "endDate":"2022-03-08",
@@ -69,7 +69,7 @@ let apiList=[
     }
 	,             
    {
-        "qName": "38节9.9支付券",
+        "qName": "38节9支付券",
         "qTime": "14",
         "lqSpace": 1,
         "endDate":"2022-03-08",
