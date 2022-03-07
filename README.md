@@ -2,7 +2,9 @@
 # jdYhq
 一、拉库命令
 
-cron 12 19 * * *
+cron 15 19 * * *
+
+（代表每天19点15拉取，15请自行修改为1到59任意数字 防止所有人同时拉库压力过大）
 
 ql repo https://gitee.com/cxtwg2/jdYhq.git "jd_" "" "^jd[^_]"
 
