@@ -61,6 +61,14 @@ let apiList=[
     }
 	,             
    {
+        "qName": "苹果380优惠券",
+        "qTime": "20",//20
+        "lqSpace": 1,
+        "endDate":"2022-03-08",
+        "qApi": "https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&client=wh5&body=%7B%22activityId%22%3A%2231YC8b7Z9McRWGGQHZrEgjm8Vh5a%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3DBDCB04A3829724141FD8D0FA0793EBEB410B7D97A5DF10B092DFA99BC36DCCDC36160C21EBEF0F452FFD704C08221A60_bingo%2CroleId%3D95B7DF3A2A4C63F8AA4AB2E25C06F549_bingo%2CstrengthenKey%3D19F512DCD8EE34ABE9C4FB4A92C2F42A95B33DA5494706A709B1117819AC8C51_bingo%22%7D"
+    }
+	,             
+   {
         "qName": "38节18支付券",
         "qTime": "20",//20
         "lqSpace": 1,
