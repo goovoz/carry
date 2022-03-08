@@ -46,13 +46,6 @@ let apiList=[
         "endDate":"2022-03-31",
         "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&client=wh5&body=%7B%22activityId%22%3A%223H885vA4sQj6ctYzzPVix4iiYN2P%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3D82955FF5B19B4873DD7044D75B44AD907C1A9FECE3BD974B2E35492750271EA91192D5362104AA91EDD08FFB7EFA944C_bingo%2CroleId%3D04BCD352B47E5A8B92C7D4ED398FBE33_bingo%2CstrengthenKey%3D19F512DCD8EE34ABE9C4FB4A92C2F42A35635A66A268556B6252CE474CA6F3B6_bingo%22%7D"
 }	,             
-   {
-        "qName": "海蓝之谜",
-        "qTime": "14,18,20",
-        "lqSpace": 1,
-        "endDate":"2022-03-08",
-        "qApi": "https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&body=%7B%22activityId%22:%2201179890%22,%22scene%22:1,%22platform%22:%223%22,%22args%22:%22roleId%3D71034006,key%3Dm8a0tae0r8i3acldc4mcs78a57dff1d7%22,%22channel%22:%22%E9%80%9A%E5%A4%A9%E5%A1%94%E4%BC%9A%E5%9C%BA%22,%22subChannel%22:%22PLUSDAY%22%7D&client=wh5&clientVersion=1.0.0"
-    },  
 {
         "qName": "极速19-6",
         "qTime": "7,18",//7,10,15,18,21
@@ -73,15 +66,6 @@ let apiList=[
         "lqSpace": 1,
         "endDate":"2022-03-31",
         "qApi": "https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&client=wh5&body=%7B%22activityId%22%3A%223H885vA4sQj6ctYzzPVix4iiYN2P%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3D6102ED3D9BC7C8DFF14D1A36FFA89602070B138DF76D200B6FA411359FBAD50B1FD83787E7C9BEF8843A4631ADF6C792_bingo%2CroleId%3D20E136F5EB78E9D323CEA65000B08718_bingo%2CstrengthenKey%3D19F512DCD8EE34ABE9C4FB4A92C2F42A65327F2097264F7157C058E713F98BE4_bingo%22%7D"
-    }
-
-	,             
-   {
-        "qName": "苹果380优惠券",
-        "qTime": "20",//20
-        "lqSpace": 1,
-        "endDate":"2022-03-08",
-        "qApi": "https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&client=wh5&body=%7B%22activityId%22%3A%2231YC8b7Z9McRWGGQHZrEgjm8Vh5a%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3DBDCB04A3829724141FD8D0FA0793EBEB410B7D97A5DF10B092DFA99BC36DCCDC36160C21EBEF0F452FFD704C08221A60_bingo%2CroleId%3D95B7DF3A2A4C63F8AA4AB2E25C06F549_bingo%2CstrengthenKey%3D19F512DCD8EE34ABE9C4FB4A92C2F42A95B33DA5494706A709B1117819AC8C51_bingo%22%7D"
     }
 	,             
    {
