@@ -153,7 +153,7 @@ async function sign() {
 function reward_query() {
   return new Promise(resolve => {
     $.get(taskGetUrl("spring_reward_query", {
-      "inviter": ["aN8mFXv3ct4DsDWk6uKZew"][Math.floor((Math.random() * 1))],
+      "inviter": [][Math.floor((Math.random() * 1))],
       linkId
     }), async (err, resp, data) => {
       try {
@@ -180,7 +180,7 @@ function reward_query() {
 }
 async function redPacket() {
   return new Promise(resolve => {
-    $.get(taskGetUrl("spring_reward_receive",{"inviter":["aN8mFXv3ct4DsDWk6uKZew"][Math.floor((Math.random() * 1))], linkId}),
+    $.get(taskGetUrl("spring_reward_receive",{"inviter":[][Math.floor((Math.random() * 1))], linkId}),
         async (err, resp, data) => {
           try {
             if (err) {
@@ -398,10 +398,7 @@ function cashOut(id,poolBaseId,prizeGroupId,prizeBaseId,) {
 }
 
 function invite2() {
-  let inviterIdArr = [
-    "9vOskAagcMJ4EOWXPQSS9A==",
-    "9irilvenEupYF488TUrl19DLuKQ9zWnXYHf9anC0ujw="
-  ]
+  let inviterIdArr = []
   let inviterId = inviterIdArr[Math.floor((Math.random() * inviterIdArr.length))]
   let options = {
     url: "https://api.m.jd.com/",
