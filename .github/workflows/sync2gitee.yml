@@ -1,0 +1,21 @@
+name: Sync github Repos To gitee
+on:
+  push:
+    branches:
+      - jd
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+
+    - name: sync github -> gitee
+      uses: Yikun/hub-mirror-action@master
+      with:
+        src: github/goovoz
+        dst: gitee/goovoz
+        static_list: "jd"
+        dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+        dst_token: ${{ secrets.GITEE_TOKEN }}
+        clone_style: ssh
+        debug: true  
