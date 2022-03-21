@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-
+    
     - name: sync github -> gitee
       uses: Yikun/hub-mirror-action@master
       with:
@@ -16,5 +16,5 @@ jobs:
         static_list: "carry"
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
-        clone_style: http
+        clone_style: ssh
         debug: true  
