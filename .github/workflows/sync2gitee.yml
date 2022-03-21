@@ -1,8 +1,7 @@
 name: Sync github Repos To gitee
 on:
   push:
-    branches:
-      - jd
+    branches: [ main ]
 
 jobs:
   build:
