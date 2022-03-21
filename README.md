@@ -2,9 +2,11 @@
 # jdYhq
 一、拉库命令
 
-cron 25 19 * * *
+名称：随意自己能找到就行
 
-ql repo https://gitee.com/cxtwg2/jdYhq.git "jd_" "" "^jd[^_]"
+命令：ql repo https://gitee.com/cxtwg2/jdYhq.git "jd_" "" "^jd[^_]"
+
+定时规则： 25 19 * * *
 
 （代表每天19点25拉取，25请自行修改为1到59任意数字 防止所有人同时拉库压力过大）
 
