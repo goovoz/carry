@@ -13,8 +13,8 @@ jobs:
       with:
         src: github/goovoz
         dst: gitee/goovoz
-        static_list: "jd"
+        static_list: "carry"
         dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
         dst_token: ${{ secrets.GITEE_TOKEN }}
-        clone_style: ssh
+        clone_style: http
         debug: true  
