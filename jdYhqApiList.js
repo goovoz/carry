@@ -15,6 +15,13 @@
 */
 let apiList=[
 {
+        "qName": "苹果1000-100",
+        "qTime": "10,14,16,20",
+        "lqSpace": 1,
+        "endDate":"2022-03-26",
+        "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&client=wh5&body=%7B%22activityId%22%3A%222zTEdaefpfrtZvCVNMND9ujXJsxq%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3D548B74A82EC3AADF24E506C9A9C7F8D47E1297FDBA5854DC2ACB5948C23108216813A96A80907BC96AEC4901B0A5455C_bingo%2CroleId%3D2F205A052F3D60537C1D39543036C876_bingo%2CstrengthenKey%3D19F512DCD8EE34ABE9C4FB4A92C2F42A71585C0AF8833B2808C93F3FB6967270_bingo%22%7D"
+},
+{
         "qName": "极速5-2",
         "qTime": "21",//7,10,15,18,21
         "lqSpace": 1,
