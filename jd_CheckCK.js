@@ -81,9 +81,19 @@ OErrorMessageGp4 = '';
 let strAllNotify = "";
 let strNotifyOneTemp = "";
 let WP_APP_TOKEN_ONE = "";
-if ($.isNode() && process.env.WP_APP_TOKEN_ONE) {
-    WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
+let JDX_URL = "";
+if ($.isNode()) {
+	if (process.env.WP_APP_TOKEN_ONE) {		
+		WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
+	}
+	if (process.env.JDX_URL) {
+		JDX_URL = process.env.JDX_URL;
+	}
 }
+if(WP_APP_TOKEN_ONE)
+	console.log(`检测到已配置Wxpusher的Token，启用一对一推送...`);
+else
+	console.log(`检测到未配置Wxpusher的Token，禁用一对一推送...`);
 
 let ReturnMessageTitle = '';
 
