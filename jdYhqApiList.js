@@ -15,6 +15,13 @@
 */
 let apiList=[
 {
+        "qName": "苹果100-6",
+        "qTime": "0,20",
+        "lqSpace": 1,
+        "endDate":"2022-03-26",
+        "qApi":"https://api.m.jd.com/client.action?functionId=newBabelAwardCollection&client=wh5&body=%7B%22activityId%22%3A%222zTEdaefpfrtZvCVNMND9ujXJsxq%22%2C%22scene%22%3A%221%22%2C%22args%22%3A%22key%3DEFA4C70FA2D97833A0A7501FA291700919F56BD83C67BB4FAFE01BC57E0ACB79F0968915E938AA90ED418310A1F1B19F_bingo%2CroleId%3DDADFF684D6E6A23754AF035071CF720C_bingo%2CstrengthenKey%3D19F512DCD8EE34ABE9C4FB4A92C2F42A671A9B39AB67ED15AAB0285C5C24B794_bingo%22%7D"
+},
+{
         "qName": "苹果1000-100",
         "qTime": "0,10,14,16,20",
         "lqSpace": 1,
