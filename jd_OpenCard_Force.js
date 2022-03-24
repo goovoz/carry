@@ -2,6 +2,8 @@
 入会开卡领取礼包(通用)
 作者：Dellear
 
+自用，拉库请自行禁用
+
 使用环境变量 VENDER_ID 提供 venderid，多个用&连接
 脚本大部分内容包括加密部分代码提取自 smiek2121 的开卡脚本
 
@@ -24,7 +26,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //IOS等用户直接用NobyDa的jd cookie
 CryptoScripts()
 $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
-
+let joinVenderIdList = '';
 let cookiesArr = [],
     cookie = '';
 if ($.isNode()) {
@@ -39,13 +41,13 @@ if ($.isNode()) {
 allMessage = '';
 message = '';
 !(async () => {
+  console.log("\n\n【由于自动运行会自动开卡，建议禁用】\n【如需使用请自行查找入会ID添加】\n【变量：export VENDER_ID='ID'】\n\n")
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
       "open-url": "https://bean.m.jd.com/"
     });
     return;
   }
-
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     if (cookie) {
@@ -70,7 +72,7 @@ message = '';
 
 async function run() {
   try {
-        const joinVenderIdList = process.env.VENDER_ID.split('&');
+        const joinVenderIdList = process.env.VENDER_ID.split("&");
         for (let i = 0; i < joinVenderIdList.length; i++) {
             $.joinVenderId = joinVenderIdList[i];
             $.errorJoinShop = '';
