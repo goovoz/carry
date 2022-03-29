@@ -23,6 +23,23 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const jsdom = $.isNode() ? require('jsdom') : '';
+
+let WP_APP_TOKEN_ONE = "";
+let JDX_URL = "";
+
+if ($.isNode()) {
+	if (process.env.WP_APP_TOKEN_ONE) {		
+		WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
+	}
+  if (process.env.JDX_URL) {
+		JDX_URL = process.env.JDX_URL;
+	}
+}
+if(WP_APP_TOKEN_ONE)
+	console.log(`检测到已配置Wxpusher的Token，启用一对一推送...`);
+else
+	console.log(`检测到未配置Wxpusher的Token，禁用一对一推送...`);
+
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message, allMessage = '';
 if ($.isNode()) {
@@ -33,6 +50,9 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
+
+
+
 const JD_API_HOST = 'https://api.m.jd.com/';
 !(async () => {
   if (!cookiesArr[0]) {
@@ -55,8 +75,8 @@ const JD_API_HOST = 'https://api.m.jd.com/';
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
-        if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+        if ($.isNode() && WP_APP_TOKEN_ONE) {
+          await notify.sendNotifybyWxPucher(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
         }
         continue
       }
