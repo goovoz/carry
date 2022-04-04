@@ -799,7 +799,7 @@ function taskGetUrl(function_id, body) {
 }
 
 function invite2() {
-  let inviterIdArr = []
+  let inviterIdArr = ["gq4X/0r1GOJP524AhpsgV8Rpz3RUwXsxtsbqLHO+T+I=","yUEoB0uTQC3ZY2b3jb/qsQ==","xObJhfHF0tOYM48aPyC3mA==","N1YeHlIp58GlMp7vOa6arg==","jgF0KuJSgjPvoSZ0yCmJFw=="]
   let inviterId = inviterIdArr[Math.floor((Math.random() * inviterIdArr.length))]
   let options = {
     url: "https://api.m.jd.com/",
@@ -824,7 +824,7 @@ function invite2() {
 
 function invite() {
   let t = +new Date()
-  let inviterIdArr = []
+  let inviterIdArr = ["gq4X/0r1GOJP524AhpsgV8Rpz3RUwXsxtsbqLHO+T+I=","yUEoB0uTQC3ZY2b3jb/qsQ==","xObJhfHF0tOYM48aPyC3mA==","N1YeHlIp58GlMp7vOa6arg==","jgF0KuJSgjPvoSZ0yCmJFw=="]
   let inviterId = inviterIdArr[Math.floor((Math.random() * inviterIdArr.length))]
   let options = {
     url: `https://api.m.jd.com/?t=${t}`,
