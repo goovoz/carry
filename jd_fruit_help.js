@@ -95,6 +95,7 @@ let NoNeedCodes = [];
               message = '';
               subTitle = '';
               option = {};
+              await shareCodesFormat();
               $.retry = 0;
 			  llgetshare = false;
               await GetCollect();
@@ -719,12 +720,57 @@ function timeFormat(time) {
     return date.getFullYear() + '-' + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1)) + '-' + (date.getDate() >= 10 ? date.getDate() : '0' + date.getDate());
 }
 
+function readShareCode() {
+  return new Promise(async resolve => {
+    $.get({url: `https://raw.githubusercontent.com/goovoz/updateTeam/master/farm`, timeout: 10000}, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(JSON.stringify(err))
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
+            data = JSON.parse(data);
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+    await $.wait(10000);
+    resolve()
+  })
+}
+function shareCodesFormat() {
+  return new Promise(async resolve => {
+    // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
+    newShareCodes = [];
+    if ($.shareCodesArr[$.index - 1]) {
+      newShareCodes = $.shareCodesArr[$.index - 1].split('@');
+    } else {
+      console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
+      const tempIndex = $.index > shareCodes.length ? (shareCodes.length - 1) : ($.index - 1);
+    //  newShareCodes = shareCodes[tempIndex].split('@');
+    }
+    const readShareCodeRes = await readShareCode();
+    if (readShareCodeRes && readShareCodeRes.code === 200) {
+      // newShareCodes = newShareCodes.concat(readShareCodeRes.data || []);
+      newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
+    }
+    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
+    resolve();
+  })
+}
+
 function requireConfig() {
     return new Promise(resolve => {
         console.log('开始获取配置文件\n')
         notify = $.isNode() ? require('./sendNotify') : '';
         //Node.js用户请在jdCookie.js处填写京东ck;
         const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+        const jdFruitShareCodes = $.isNode() ? require('./jdFruitShareCodes.js') : '';
         //IOS等用户直接用NobyDa的jd cookie
         if ($.isNode()) {
             Object.keys(jdCookieNode).forEach((item) => {
@@ -738,6 +784,19 @@ function requireConfig() {
         }
         console.log(`共${cookiesArr.length}个京东账号\n`)
         $.shareCodesArr = [];
+        if ($.isNode()) {
+          Object.keys(jdFruitShareCodes).forEach((item) => {
+            if (jdFruitShareCodes[item]) {
+              $.shareCodesArr.push(jdFruitShareCodes[item])
+            }
+          })
+        } else {
+          if ($.getdata('jd_fruit_inviter')) $.shareCodesArr = $.getdata('jd_fruit_inviter').split('\n').filter(item => !!item);
+          console.log(`\nBoxJs设置的${$.name}好友邀请码:${$.getdata('jd_fruit_inviter') ? $.getdata('jd_fruit_inviter') : '暂无'}\n`);
+        }
+        // console.log(`$.shareCodesArr::${JSON.stringify($.shareCodesArr)}`)
+        // console.log(`jdFruitShareArr账号长度::${$.shareCodesArr.length}`)
+        console.log(`您提供了${$.shareCodesArr.length}个账号的农场助力码\n`);
         resolve()
     })
 }
