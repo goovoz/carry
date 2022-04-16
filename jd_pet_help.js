@@ -83,6 +83,7 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
             taskInfoKey = [];
             option = {};
             lnrun++;
+            await shareCodesFormat();
 			await jdPet();
 			if (lnrun == 3) {
               console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
