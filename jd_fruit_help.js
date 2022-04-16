@@ -68,7 +68,6 @@ if (Fileexists) {
 let lnrun = 0;
 let llgetshare = false;
 let NoNeedCodes = [];
-
 !(async() => {
     await requireConfig();
     if (!cookiesArr[0]) {
@@ -213,8 +212,6 @@ async function turntableFarm() {
     let {timingIntervalHours, timingLastSysTime, sysTime, remainLotteryTimes, turntableInfos} = $.initForTurntableFarmRes;
     //天天抽奖助力
     console.log('开始天天抽奖--好友助力--每人每天只有三次助力机会.')
-    const readShareCodeRes = await readShareCode();
-    $. newShareCodes = [...new Set([ ...(readShareCodeRes.data || []),...newShareCodes,...(jdFruitShareArr || [])])];
     for (let code of newShareCodes) {
       if (code === $.farmInfo.farmUserPro.shareCode) {
         console.log('天天抽奖-不能自己给自己助力\n')
@@ -277,8 +274,6 @@ async function masterHelpShare() {
   let helpSuccessPeoples = '';//成功助力好友
   if(llhelp){
 	  console.log('开始助力好友')
-	  const readShareCodeRes = await readShareCode();
-      $. newShareCodes = [...new Set([ ...(readShareCodeRes.data || []),...newShareCodes,...(jdFruitShareArr || [])])];
 	  for (let code of newShareCodes) {
 		if(NoNeedCodes){
 			var llnoneed=false;
@@ -724,38 +719,12 @@ function timeFormat(time) {
     return date.getFullYear() + '-' + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1)) + '-' + (date.getDate() >= 10 ? date.getDate() : '0' + date.getDate());
 }
 
-function readShareCode() {
-  return new Promise(async resolve => {
-    $.get({url: `https://raw.githubusercontent.com/goovoz/updateTeam/master/farm`, timeout: 10000}, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(JSON.stringify(err))
-          console.log(`${$.name} API请求失败，请检查网路重试`)
-        } else {
-          if (data) {
-            console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
-            data = JSON.parse(data);
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data);
-      }
-    })
-    await $.wait(10000);
-    resolve()
-  })
-}
-
-
 function requireConfig() {
     return new Promise(resolve => {
         console.log('开始获取配置文件\n')
         notify = $.isNode() ? require('./sendNotify') : '';
         //Node.js用户请在jdCookie.js处填写京东ck;
         const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-        const jdFruitShareCodes = $.isNode() ? require('./jdFruitShareCodes.js') : '';
         //IOS等用户直接用NobyDa的jd cookie
         if ($.isNode()) {
             Object.keys(jdCookieNode).forEach((item) => {
@@ -769,19 +738,6 @@ function requireConfig() {
         }
         console.log(`共${cookiesArr.length}个京东账号\n`)
         $.shareCodesArr = [];
-        if ($.isNode()) {
-          Object.keys(jdFruitShareCodes).forEach((item) => {
-            if (jdFruitShareCodes[item]) {
-              $.shareCodesArr.push(jdFruitShareCodes[item])
-            }
-          })
-        } else {
-          if ($.getdata('jd_fruit_inviter')) $.shareCodesArr = $.getdata('jd_fruit_inviter').split('\n').filter(item => !!item);
-          console.log(`\nBoxJs设置的${$.name}好友邀请码:${$.getdata('jd_fruit_inviter') ? $.getdata('jd_fruit_inviter') : '暂无'}\n`);
-        }
-        // console.log(`$.shareCodesArr::${JSON.stringify($.shareCodesArr)}`)
-        // console.log(`jdFruitShareArr账号长度::${$.shareCodesArr.length}`)
-        console.log(`您提供了${$.shareCodesArr.length}个账号的农场助力码\n`);
         resolve()
     })
 }
