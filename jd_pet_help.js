@@ -85,7 +85,6 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
 				goodsUrl = '';
 				taskInfoKey = [];
 				option = {};
-				await shareCodesFormat();
 				await GetShareCode();
 				await $.wait(3 * 1000);
 			}
@@ -225,19 +224,6 @@ function readShareCode() {
   })
 }
 
-function shareCodesFormat() {
-  return new Promise(async resolve => {
-    // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
-    newShareCodes = [];
-    const readShareCodeRes = await readShareCode();
-    //const readShareCodeRes = null;
-    if (readShareCodeRes && readShareCodeRes.code === 200) {
-      newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
-    }
-    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
-    resolve();
-  })
-}
 
 async function GetShareCode() {
     try {
@@ -269,6 +255,8 @@ async function GetShareCode() {
  */
 async function slaveHelp() {
     let helpPeoples = '';
+    const readShareCodeRes = await readShareCode();
+    $. code = [...new Set([ ...(readShareCodeRes.data || []),...newShareCodes,...(jdPetShareArr || [])])];
     for (let code of newShareCodes) {
 		if(NoNeedCodes){
 			var llnoneed=false;
