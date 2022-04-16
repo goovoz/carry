@@ -1,5 +1,5 @@
 /*
-东东萌宠 更新地址： jd_pet.js
+东东萌宠 更新地址： jd_pet_help.js
 更新时间：2021-05-21
 活动入口：京东APP我的-更多工具-东东萌宠
 已支持IOS多京东账号,Node.js支持N个京东账号
@@ -11,20 +11,20 @@
 =================================Quantumultx=========================
 [task_local]
 #东东萌宠
-15 6-18/6 * * * jd_pet.js, tag=东东萌宠, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdmc.png, enabled=true
+30 5,20 * * * jd_pet_help.js, tag=东东萌宠, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdmc.png, enabled=true
 
 =================================Loon===================================
 [Script]
-cron "15 6-18/6 * * *" script-path=jd_pet.js,tag=东东萌宠
+cron "30 5,20 * * *" script-path=jd_pet_help.js,tag=东东萌宠
 
 ===================================Surge================================
-东东萌宠 = type=cron,cronexp="15 6-18/6 * * *",wake-system=1,timeout=3600,script-path=jd_pet.js
+东东萌宠 = type=cron,cronexp="30 5,20 * * *",wake-system=1,timeout=3600,script-path=jd_pet_help.js
 
 ====================================小火箭=============================
-东东萌宠 = type=cron,script-path=jd_pet.js, cronexpr="15 6-18/6 * * *", timeout=3600, enable=true
+东东萌宠 = type=cron,script-path=jd_pet_help.js, cronexpr="30 5,20 * * *", timeout=3600, enable=true
 
  */
-const $ = new Env('东东萌宠');
+const $ = new Env('东东萌宠内部互助');
 let cookiesArr = [], cookie = '', jdPetShareArr = [], isBox = false, newShareCodes, allMessage = '';
 let message = '', subTitle = '', option = {};
 let jdNotify = false; //是否关闭通知，false打开通知推送，true关闭通知推送
@@ -35,7 +35,6 @@ let notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let shareCodes = [];
 let NoNeedCodes = [];
-let lnrun = 0;
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         if (jdCookieNode[item]) {
@@ -48,6 +47,9 @@ if ($.isNode()) {
     cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 
+let NowHour = new Date().getHours();
+let llhelp=true;
+let lnrun = 0;
 console.log(`共${cookiesArr.length}个京东账号\n`);
 
 !(async() => {
