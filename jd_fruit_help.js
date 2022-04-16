@@ -68,8 +68,7 @@ if (Fileexists) {
 let lnrun = 0;
 let llgetshare = false;
 let NoNeedCodes = [];
-const readShareCodeRes = await readShareCode();
-$. newShareCodes = [...new Set([ ...(readShareCodeRes.data || []),...newShareCodes,...(jdFruitShareArr || [])])];
+
 !(async() => {
     await requireConfig();
     if (!cookiesArr[0]) {
@@ -214,6 +213,8 @@ async function turntableFarm() {
     let {timingIntervalHours, timingLastSysTime, sysTime, remainLotteryTimes, turntableInfos} = $.initForTurntableFarmRes;
     //天天抽奖助力
     console.log('开始天天抽奖--好友助力--每人每天只有三次助力机会.')
+    const readShareCodeRes = await readShareCode();
+    $. newShareCodes = [...new Set([ ...(readShareCodeRes.data || []),...newShareCodes,...(jdFruitShareArr || [])])];
     for (let code of newShareCodes) {
       if (code === $.farmInfo.farmUserPro.shareCode) {
         console.log('天天抽奖-不能自己给自己助力\n')
@@ -276,6 +277,8 @@ async function masterHelpShare() {
   let helpSuccessPeoples = '';//成功助力好友
   if(llhelp){
 	  console.log('开始助力好友')
+	  const readShareCodeRes = await readShareCode();
+      $. newShareCodes = [...new Set([ ...(readShareCodeRes.data || []),...newShareCodes,...(jdFruitShareArr || [])])];
 	  for (let code of newShareCodes) {
 		if(NoNeedCodes){
 			var llnoneed=false;
