@@ -68,6 +68,8 @@ if (Fileexists) {
 let lnrun = 0;
 let llgetshare = false;
 let NoNeedCodes = [];
+const readShareCodeRes = await readShareCode();
+$. newShareCodes = [...new Set([ ...(readShareCodeRes.data || []),...newShareCodes,...(jdFruitShareArr || [])])];
 !(async() => {
     await requireConfig();
     if (!cookiesArr[0]) {
@@ -274,8 +276,6 @@ async function masterHelpShare() {
   let helpSuccessPeoples = '';//成功助力好友
   if(llhelp){
 	  console.log('开始助力好友')
-  const readShareCodeRes = await readShareCode();
-  $. newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || []),...(jdFruitShareArr || [])])];
 	  for (let code of newShareCodes) {
 		if(NoNeedCodes){
 			var llnoneed=false;
