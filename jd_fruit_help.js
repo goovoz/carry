@@ -275,7 +275,7 @@ async function masterHelpShare() {
   if(llhelp){
 	  console.log('开始助力好友')
   const readShareCodeRes = await readShareCode();
-  $. newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || []),...(jdPlantBeanShareArr || [])])];
+  $. newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || []),...(jdFruitShareArr || [])])];
 	  for (let code of newShareCodes) {
 		if(NoNeedCodes){
 			var llnoneed=false;
