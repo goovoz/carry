@@ -33,6 +33,7 @@ let goodsUrl = '', taskInfoKey = [];
 let notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let newShareCodes = [];
+let randomCount = $.isNode() ? 20 : 5;
 let NoNeedCodes = [];
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
@@ -84,6 +85,7 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
 				goodsUrl = '';
 				taskInfoKey = [];
 				option = {};
+				await shareCodesFormat();
 				await GetShareCode();
 				await $.wait(3 * 1000);
 			}
@@ -199,6 +201,44 @@ async function jdPet() {
     }
 }
 
+function readShareCode() {
+  return new Promise(async resolve => {
+    $.get({url: `https://raw.githubusercontent.com/goovoz/updateTeam/master/pet`, timeout: 10000}, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(JSON.stringify(err))
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
+            data = JSON.parse(data);
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+    await $.wait(10000);
+    resolve()
+  })
+}
+
+function shareCodesFormat() {
+  return new Promise(async resolve => {
+    // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
+    newShareCodes = [];
+    const readShareCodeRes = await readShareCode();
+    //const readShareCodeRes = null;
+    if (readShareCodeRes && readShareCodeRes.code === 200) {
+      newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
+    }
+    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
+    resolve();
+  })
+}
+
 async function GetShareCode() {
     try {
         //查询jd宠物信息
@@ -220,6 +260,8 @@ async function GetShareCode() {
         $.msg($.name, '', `${errMsg}`);
     }
 }
+
+
 /**
  * 助力好友, 暂时支持一个好友, 需要拿到shareCode
  * shareCode为你要助力的好友的
