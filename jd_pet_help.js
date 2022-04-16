@@ -84,12 +84,12 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
             option = {};
             lnrun++;
             await shareCodesFormat();
-			await jdPet();
-			if (lnrun == 3) {
+            await jdPet();
+	    if (lnrun == 3) {
               console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
               await $.wait(60 * 1000);
               lnrun = 0;
-			}
+	   }
         }
     }
     if ($.isNode() && allMessage && $.ctrTemp) {
