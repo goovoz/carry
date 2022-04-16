@@ -25,7 +25,7 @@ cron "15 6-18/6 * * *" script-path=jd_pet.js,tag=东东萌宠
 
  */
 const $ = new Env('东东萌宠');
-let cookiesArr = [], cookie = '', jdPetShareArr = [], isBox = false, allMessage = '';
+let cookiesArr = [], cookie = '', jdPetShareArr = [], isBox = false, newShareCodes, allMessage = '';
 let message = '', subTitle = '', option = {};
 let jdNotify = false; //是否关闭通知，false打开通知推送，true关闭通知推送
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
@@ -33,7 +33,7 @@ let goodsUrl = '', taskInfoKey = [];
 let randomCount = $.isNode() ? 20 : 5;
 let notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-let newShareCodes = [];
+let shareCodes = [];
 let NoNeedCodes = [];
 let lnrun = 0;
 if ($.isNode()) {
@@ -84,12 +84,12 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
             option = {};
             lnrun++;
             await shareCodesFormat();
-            await jdPet();
-	    if (lnrun == 3) {
+			await jdPet();
+			if (lnrun == 3) {
               console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
               await $.wait(60 * 1000);
               lnrun = 0;
-	   }
+			}
         }
     }
     if ($.isNode() && allMessage && $.ctrTemp) {
@@ -497,7 +497,7 @@ function shareCodesFormat() {
     } else {
       console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
       const tempIndex = $.index > shareCodes.length ? (shareCodes.length - 1) : ($.index - 1);
-      newShareCodes = shareCodes[tempIndex].split('@');
+    //  newShareCodes = shareCodes[tempIndex].split('@');
     }
     //因好友助力功能下线。故暂时屏蔽
     const readShareCodeRes = await readShareCode();
