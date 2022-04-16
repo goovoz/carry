@@ -95,7 +95,6 @@ let NoNeedCodes = [];
               message = '';
               subTitle = '';
               option = {};
-              await shareCodesFormat();
               $.retry = 0;
 			  llgetshare = false;
               await GetCollect();
@@ -275,6 +274,8 @@ async function masterHelpShare() {
   let helpSuccessPeoples = '';//成功助力好友
   if(llhelp){
 	  console.log('开始助力好友')
+  const readShareCodeRes = await readShareCode();
+  $. newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || []),...(jdPlantBeanShareArr || [])])];
 	  for (let code of newShareCodes) {
 		if(NoNeedCodes){
 			var llnoneed=false;
@@ -743,26 +744,7 @@ function readShareCode() {
     resolve()
   })
 }
-function shareCodesFormat() {
-  return new Promise(async resolve => {
-    // console.log(`第${$.index}个京东账号的助力码:::${$.shareCodesArr[$.index - 1]}`)
-    newShareCodes = [];
-    if ($.shareCodesArr[$.index - 1]) {
-      newShareCodes = $.shareCodesArr[$.index - 1].split('@');
-    } else {
-      console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
-      const tempIndex = $.index > shareCodes.length ? (shareCodes.length - 1) : ($.index - 1);
-    //  newShareCodes = shareCodes[tempIndex].split('@');
-    }
-    const readShareCodeRes = await readShareCode();
-    if (readShareCodeRes && readShareCodeRes.code === 200) {
-      // newShareCodes = newShareCodes.concat(readShareCodeRes.data || []);
-      newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
-    }
-    console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
-    resolve();
-  })
-}
+
 
 function requireConfig() {
     return new Promise(resolve => {
