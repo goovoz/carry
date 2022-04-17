@@ -132,11 +132,7 @@ async function jdPlantBean() {
 async function doHelp() {
 
   console.log(`\n【开始账号内互助】\n`);
-
-  newShareCode = []
-  const readShareCodeRes = await readShareCode();
-  $. newShareCode = [...new Set([...newShareCode, ...(readShareCodeRes.data || []),...(jdPlantBeanShareArr || [])])];
-
+  $.newShareCode = [...(jdPlantBeanShareArr || [])]
   
   for (let plantUuid of $.newShareCode) {
     console.log(`【${$.UserName}】开始助力: ${plantUuid}`);
@@ -318,31 +314,6 @@ async function plantBeanIndex() {
         return
     }
 }
-
-function readShareCode() {
-  return new Promise(async resolve => {
-    $.get({url: `https://gh.mse.workers.dev/https://raw.githubusercontent.com/goovoz/updateTeam/master/bean`, timeout: 10000}, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(JSON.stringify(err))
-          console.log(`${$.name} API请求失败，请检查网路重试`)
-        } else {
-          if (data) {
-            console.log(`随机取个${randomCount}码放到您固定的互助码后面(不影响已有固定互助)`)
-            data = JSON.parse(data);
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data);
-      }
-    })
-    await $.wait(15000);
-    resolve()
-  })
-}
-
 function requestGet(function_id, body = {}) {
   if (!body.version) {
     body["version"] = "9.0.0.1";
