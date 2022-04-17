@@ -203,7 +203,7 @@ async function jdPet() {
 
 function readShareCode() {
   return new Promise(async resolve => {
-    $.get({url: `https://raw.githubusercontent.com/goovoz/updateTeam/master/pet`, timeout: 10000}, (err, resp, data) => {
+    $.get({url: `https://gh.mse.workers.dev/https://raw.githubusercontent.com/goovoz/updateTeam/master/pet`, timeout: 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(JSON.stringify(err))
