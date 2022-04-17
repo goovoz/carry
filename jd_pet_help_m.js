@@ -129,10 +129,6 @@ async function jdPet() {
                 return
             }
             $.taskInfo = $.taskInit.result;
-			if (llhelp){
-				await slaveHelp(); //助力好友
-				await $.wait(10 * 1000);
-			}
             //await showMsg();
             
         } else if (initPetTownRes.code === '0') {
