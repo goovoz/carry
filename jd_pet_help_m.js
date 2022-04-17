@@ -180,6 +180,14 @@ async function slaveHelp() {
   }
 }
 
+// 初始化任务, 可查询任务完成情况
+async function taskInit() {
+    console.log('开始任务初始化');
+    $.taskInit = await request(arguments.callee.name.toString(), {
+            "version": 1
+        });
+}
+
 function readShareCode() {
   return new Promise(async resolve => {
     $.get({url: `https://gh.mse.workers.dev/https://raw.githubusercontent.com/goovoz/updateTeam/master/pet`, timeout: 10000}, (err, resp, data) => {
