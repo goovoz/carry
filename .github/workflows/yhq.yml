@@ -1,7 +1,7 @@
 name: JDYHQ-sync
 on:
   schedule:
-    - cron: '45 * * * *'
+    - cron: '45 20 * * *'
   workflow_dispatch:
   watch:
     types: started
