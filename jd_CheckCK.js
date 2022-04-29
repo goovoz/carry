@@ -1,5 +1,7 @@
 /*
+
 cron "30 2-22/2 * * *" jd_CheckCK.js, tag:京东CK检测by-ccwav
+
  */
 //详细说明参考 https://github.com/ccwav/QLScript2.
 const $ = new Env('京东CK检测');
@@ -81,9 +83,11 @@ OErrorMessageGp4 = '';
 let strAllNotify = "";
 let strNotifyOneTemp = "";
 let WP_APP_TOKEN_ONE = "";
+
 if ($.isNode() && process.env.WP_APP_TOKEN_ONE) {
     WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
 }
+
 
 let ReturnMessageTitle = '';
 

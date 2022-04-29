@@ -8,6 +8,24 @@ let trialActivityIdList = []
 let trialActivityTitleList = []
 let notifyMsg = ''
 let size = 1;
+
+let WP_APP_TOKEN_ONE = "";
+let JDX_URL = "";
+
+let time = new Date().getHours();
+if ($.isNode()) {
+	if (process.env.WP_APP_TOKEN_ONE) {		
+		WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
+	}
+	if (process.env.JDX_URL) {
+		JDX_URL = process.env.JDX_URL;
+	}
+}
+if(WP_APP_TOKEN_ONE)
+	console.log(`检测到已配置Wxpusher的Token，启用一对一推送...`);
+else
+	console.log(`检测到未配置Wxpusher的Token，禁用一对一推送...`);
+
 $.isPush = true;
 $.isLimit = false;
 $.isForbidden = false;
@@ -37,6 +55,7 @@ if ($.isNode()) {
         })
         return
     }
+
     // for (let i = 0; i < 200; i++) {
 		  for (let i = 0; i < cookiesArr.length; i++) {
 			if (cookiesArr[i]) {
@@ -55,6 +74,7 @@ if ($.isNode()) {
 				}
 				continue
 			  }
+
             let data = await try_list()
             try {
                 list = data.data.list
@@ -74,11 +94,14 @@ if ($.isNode()) {
             await $.wait(5000);
         }
     }
+
     //console.log($.notifyMsg)
 	if ($.isNode() && $.notifyMsg) {
-		await notify.sendNotify(`${$.name}`, `${$.notifyMsg}`);
+    await notify.sendNotifybyWxPucher($.name, $.notifyMsg);
+    await notify.sendNotifyWithPtPin($.name, $.notifyMsg, $.pt_pin)
     }
     
+
 })().catch((e) => {
     console.error(`❗️ ${$.name} 运行错误！\n${e}`)
 }).finally(() => $.done())
