@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync AV
+      - name: sync YHQ
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
