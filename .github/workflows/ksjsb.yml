@@ -1,12 +1,12 @@
-name: JDYHQ-sync
+name: ksjsb-sync
 on:
   schedule:
-    - cron: '45 20 * * *'
+    - cron: '45 */6 * * *'
   workflow_dispatch:
   watch:
     types: started
   repository_dispatch:
-    types: sync-JDYHQ
+    types: ksjsb-JDYHQ
 jobs:
   repo-sync:
     env:
@@ -18,11 +18,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: sync YHQ
+      - name: sync ksjsb
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://gitee.com/cxtwg2/jdYhq.git"
+          source_repo: "https://github.com/HarbourJ/Temp.git"
           source_branch: "main"
-          destination_branch: "yhq"
+          destination_branch: "ksjsb"
           github_token: ${{ secrets.PAT }}
