@@ -1,10 +1,7 @@
 /*
-0512版本更新
-修复签名验证失败
-内置已去
-全天990+699+100+800混合广告数据
+低保版
 */
-const $$ = Envcc('');
+const $$ = Envcc('慢脚龟速版低保');
 let acckey = $$["isNode"]() ? process["env"]["cdkey"] ? process["env"]["cdkey"] : '' : $$["getdata"]("cdkey") ? $$["getdata"]("cdkey") : '',
     all_msg = '',
     mac = '';
@@ -86,7 +83,7 @@ function hqs(T = 10) {
   });
 }
 
-const _0x11b3c3 = "快手极速版",
+const _0x11b3c3 = "慢脚龟速版低保",
       _0x3de8b8 = new _0x4f15e2(_0x11b3c3);
 
 let _0x279d25 = '',
@@ -104,114 +101,114 @@ let _0x279d25 = '',
     _0x5718d8 = [],
     yifenk = [];
 
-const _0x1eb2d5 = {
-  'id': 0,
-  'name': '广告视频'
-},
-      _0x4fbf92 = {
-  'id': 49,
-  'name': "广告视频"
-},
-      _0x1b4191 = {
-  'id': 77,
-  'name': "宝箱翻倍视频"
-},
-      _0x2ffe31 = {
-  'id': 136,
-  'name': "签到翻倍视频1"
-},
-      _0x577a80 = {
-  'id': 151,
-  'name': "未知视频"
-},
-      _0x351e94 = {
-  'ad1': _0x1eb2d5,
-  'ad2': _0x4fbf92,
-  'box': _0x1b4191,
-  'sign': _0x2ffe31,
-  'unknown1': _0x577a80
-},
-      _0x1e4967 = {
-  'ad': 49,
-  'live': 75,
-  'luckydraw': 161,
-  'gj': 217,
-  'invite': 2008
-},
-      _0x3355c4 = {
-  'extParams': "56dfe31594b858e69ef613f5e97227fb03493544e59e2b2a726006e2852ec1040cd969d4748c460ecf574cc487214a91f70592aa8b2225630027c39ca2c544027efa65815d1acea23cb503034b12641c",
-  'businessId': 161,
-  'pageId': 11101,
-  'posId': 4683,
-  'subPageId': 100013628,
-  'name': "获取抽奖次数视频"
-},
-      _0x458f20 = {
-  'extParams': "56dfe31594b858e69ef613f5e97227fbe9979240d7caecf84db127b47a4a8bb0a744376361788e9d4f8341978842c3a723b72e4befa3dc60a2c580bf4fc43399f798f286e2c8c3069effa1db27aa45bd",
-  'businessId': 161,
-  'pageId': 11101,
-  'posId': 4685,
-  'subPageId': 100013630,
-  'name': "抽奖视频990+"
-},
-      _0x124c4a = {
-  'extParams': "56dfe31594b858e69ef613f5e97227fb2e82277a9c2a55fb8abc69671ac1719704be5d7e57a2b01d0bf5e6638ace22b910dee74365d1dcfa12634981cb43bc69a930709bc1f826ece28ff337f53c355b",
-  'businessId': 161,
-  'pageId': 11101,
-  'posId': 4684,
-  'subPageId': 100013629,
-  'name': '抽奖视频699+'
-},
-      _0x37f16f = {
-  'extParams': "56dfe31594b858e69ef613f5e97227fb67b973ad1394855c549442d15702f96393178eaeef5635134bb7e4ff97e69218c1f18455baf645dbaef685b7bf30c0914ea53ddcde26b2fa67b888203dab0fd4",
-  'businessId': 11,
-  'pageId': 11101,
-  'posId': 4684,
-  'subPageId': 100013629,
-  'name': "抽奖视频100+"
-},
-      _0x10efec = {
-  'extParams': '56dfe31594b858e69ef613f5e97227fbcb18b65ce67342c03fd16da46f5dd52b0b37201ad9cf67cdfd05f8c9a5234ae7b24624bc881a52c3c7e6ab22e32f6fd2c0e52c6c0e9b7e312f021e0d41162e7f',
-  'businessId': 11,
-  'pageId': 11101,
-  'posId': 4684,
-  'subPageId': 100013629,
-  'name': "抽奖视频80+"
-},
-      _0x385181 = {
-  'extParams': "60869a9fd2ab63f5e0b1725d059da31f7d3ed3046658438ee204a153c3bc47189ccf268b22e603b6750780c9647e7a12b3027381e11da27b234311bccfd4a67bb892f889a4020ceae4f4e102cc50c327",
-  'businessId': 2008,
-  'pageId': 100012068,
-  'posId': 6765,
-  'subPageId': 100015089,
-  'name': "邀请页视频(实际是100金币)"
-},
-      _0xfcb1d2 = {
-  'extParams': "56dfe31594b858e69ef613f5e97227fbd5f9da00aa5144df8830a5781ae07d7cfaf4d95abc2510c950f99404a9e0bf62f5b5765a867c385685e0570ed76b858a159dacd55e41e4a9813db4e619a8b092",
-  'businessId': 75,
-  'pageId': 100012068,
-  'posId': 6765,
-  'subPageId': 100015089,
-  'name': '直播任务'
-},
-      _0x11da17 = {
-  'extParams': "56dfe31594b858e69ef613f5e97227fbd5f9da00aa5144df8830a5781ae07d7cfaf4d95abc2510c950f99404a9e0bf62f5b5765a867c385685e0570ed76b858a159dacd55e41e4a9813db4e619a8b092",
-  'businessId': 168,
-  'pageId': 100012068,
-  'posId': 6765,
-  'subPageId': 100015089,
-  'name': "签到翻倍视频2"
-},
-      _0x10d9f8 = {
-  'luckdrawNum_161': _0x3355c4,
-  'luckdrawVideo_161_213': _0x458f20,
-  'luckdrawVideo_161_100': _0x124c4a,
-  'luckdrawVideo_11_213': _0x37f16f,
-  'luckdrawVideo_11_100': _0x10efec,
-  'inviteVideo_2008': _0x385181,
-  'liveVideo_75': _0xfcb1d2,
-  'signVideo_168': _0x11da17
-};
+// const _0x1eb2d5 = {
+//   'id': 0,
+//   'name': '广告视频'
+// },
+//       _0x4fbf92 = {
+//   'id': 49,
+//   'name': "广告视频"
+// },
+//       _0x1b4191 = {
+//   'id': 77,
+//   'name': "宝箱翻倍视频"
+// },
+//        _0x2ffe31 = {
+//    'id': 136,
+//    'name': "签到翻倍视频1"
+//  },
+//       _0x577a80 = {
+//   'id': 151,
+//   'name': "未知视频"
+// },
+//       _0x351e94 = {
+//   'ad1': _0x1eb2d5,
+//   'ad2': _0x4fbf92,
+//   'box': _0x1b4191,
+//   'sign': _0x2ffe31
+//    'unknown1': _0x577a80
+// },
+//       _0x1e4967 = {
+//   'ad': 49,
+//   'live': 75,
+//   'luckydraw': 161,
+//   'gj': 217,
+//   'invite': 2008
+// },
+//       _0x3355c4 = {
+//   'extParams': "56dfe31594b858e69ef613f5e97227fb03493544e59e2b2a726006e2852ec1040cd969d4748c460ecf574cc487214a91f70592aa8b2225630027c39ca2c544027efa65815d1acea23cb503034b12641c",
+//   'businessId': 161,
+//   'pageId': 11101,
+//   'posId': 4683,
+//   'subPageId': 100013628,
+//   'name': "获取抽奖次数视频"
+// },
+//       _0x458f20 = {
+//   'extParams': "56dfe31594b858e69ef613f5e97227fbe9979240d7caecf84db127b47a4a8bb0a744376361788e9d4f8341978842c3a723b72e4befa3dc60a2c580bf4fc43399f798f286e2c8c3069effa1db27aa45bd",
+//   'businessId': 161,
+//   'pageId': 11101,
+//   'posId': 4685,
+//   'subPageId': 100013630,
+//   'name': "抽奖视频990+"
+// },
+//       _0x124c4a = {
+//   'extParams': "56dfe31594b858e69ef613f5e97227fb2e82277a9c2a55fb8abc69671ac1719704be5d7e57a2b01d0bf5e6638ace22b910dee74365d1dcfa12634981cb43bc69a930709bc1f826ece28ff337f53c355b",
+//   'businessId': 161,
+//   'pageId': 11101,
+//   'posId': 4684,
+//   'subPageId': 100013629,
+//   'name': '抽奖视频699+'
+// },
+//       _0x37f16f = {
+//   'extParams': "56dfe31594b858e69ef613f5e97227fb67b973ad1394855c549442d15702f96393178eaeef5635134bb7e4ff97e69218c1f18455baf645dbaef685b7bf30c0914ea53ddcde26b2fa67b888203dab0fd4",
+//   'businessId': 11,
+//   'pageId': 11101,
+//   'posId': 4684,
+//   'subPageId': 100013629,
+//   'name': "抽奖视频100+"
+// },
+//       _0x10efec = {
+//   'extParams': '56dfe31594b858e69ef613f5e97227fbcb18b65ce67342c03fd16da46f5dd52b0b37201ad9cf67cdfd05f8c9a5234ae7b24624bc881a52c3c7e6ab22e32f6fd2c0e52c6c0e9b7e312f021e0d41162e7f',
+//   'businessId': 11,
+//   'pageId': 11101,
+//   'posId': 4684,
+//   'subPageId': 100013629,
+//   'name': "抽奖视频80+"
+// },
+//       _0x385181 = {
+//   'extParams': "60869a9fd2ab63f5e0b1725d059da31f7d3ed3046658438ee204a153c3bc47189ccf268b22e603b6750780c9647e7a12b3027381e11da27b234311bccfd4a67bb892f889a4020ceae4f4e102cc50c327",
+//   'businessId': 2008,
+//   'pageId': 100012068,
+//   'posId': 6765,
+//   'subPageId': 100015089,
+//   'name': "邀请页视频(实际是100金币)"
+// },
+//       _0xfcb1d2 = {
+//   'extParams': "56dfe31594b858e69ef613f5e97227fbd5f9da00aa5144df8830a5781ae07d7cfaf4d95abc2510c950f99404a9e0bf62f5b5765a867c385685e0570ed76b858a159dacd55e41e4a9813db4e619a8b092",
+//   'businessId': 75,
+//   'pageId': 100012068,
+//   'posId': 6765,
+//   'subPageId': 100015089,
+//   'name': '直播任务'
+// },
+//       _0x11da17 = {
+//   'extParams': "56dfe31594b858e69ef613f5e97227fbd5f9da00aa5144df8830a5781ae07d7cfaf4d95abc2510c950f99404a9e0bf62f5b5765a867c385685e0570ed76b858a159dacd55e41e4a9813db4e619a8b092",
+//   'businessId': 168,
+//   'pageId': 100012068,
+//   'posId': 6765,
+//   'subPageId': 100015089,
+//   'name': "签到翻倍视频2"
+// },
+//       _0x10d9f8 = {
+//   'luckdrawNum_161': _0x3355c4,
+//   'luckdrawVideo_161_213': _0x458f20,
+//   'luckdrawVideo_161_100': _0x124c4a,
+//   'luckdrawVideo_11_213': _0x37f16f,
+//   'luckdrawVideo_11_100': _0x10efec,
+//   'inviteVideo_2008': _0x385181,
+//   'liveVideo_75': _0xfcb1d2,
+//   'signVideo_168': _0x11da17*/
+// };
 
 let _0x134a17 = new Date(),
     _0x20a9d7 = _0x134a17["getHours"](),
@@ -342,7 +339,7 @@ class _0x9d8dda {
       await _0x3de8b8["wait"](200);
       await this["ksAdParam"](_0x351e94["sign"]);
       await _0x3de8b8["wait"](200);
-      await this["ksNeoAdParam"](_0x10d9f8["signVideo_168"]);
+      // await this["ksNeoAdParam"](_0x10d9f8["signVideo_168"]);
     } else {
       console["log"]("账号[" + this['name'] + "]签到失败：" + S["error_msg"]);
     }
@@ -360,29 +357,29 @@ class _0x9d8dda {
       return;
     }
 
-    if (S["result"] == 1) {
-      console["log"]("账号[" + this["name"] + "]任务完成情况：");
+    // if (S["result"] == 1) {
+    //   console["log"]("账号[" + this["name"] + "]任务完成情况：");
 
-      for (let a of S["data"]["dailyTasks"]) {
-        for (let Y in _0x1e4967) {
-          if (a["taskId"] == _0x1e4967[Y]) {
-            let Z = parseInt(a["completedStages"]),
-                Q = parseInt(a["stages"]),
-                B = Math["ceil"](Q / _0xf2b084),
-                b = Z < Q;
-            const U = {
-              'num': B,
-              'needRun': b
-            };
-            this["task"][a["taskId"]] = U;
-            console["log"]('【' + a["name"] + "】 " + Z + '/' + Q + '，' + (b ? "未完成" : "已完成") + "，每次运行完成" + B + "次任务");
-            continue;
-          }
-        }
-      }
-    } else {
-      console["log"]("账号[" + this["name"] + "]查询任务列表失败：" + S["error_msg"]);
-    }
+    //   for (let a of S["data"]["dailyTasks"]) {
+    //     for (let Y in _0x1e4967) {
+    //       if (a["taskId"] == _0x1e4967[Y]) {
+    //         let Z = parseInt(a["completedStages"]),
+    //             Q = parseInt(a["stages"]),
+    //             B = Math["ceil"](Q / _0xf2b084),
+    //             b = Z < Q;
+    //         const U = {
+    //           'num': B,
+    //           'needRun': b
+    //         };
+    //         this["task"][a["taskId"]] = U;
+    //         console["log"]('【' + a["name"] + "】 " + Z + '/' + Q + '，' + (b ? "未完成" : "已完成") + "，每次运行完成" + B + "次任务");
+    //         continue;
+    //       }
+    //     }
+    //   }
+    // } else {
+    //   console["log"]("账号[" + this["name"] + "]查询任务列表失败：" + S["error_msg"]);
+    // }
   }
 
   async ['ksgj']() {
@@ -856,7 +853,7 @@ a['data']['popUp']['taskRewardName'] ='';
     }
   }
 
-  async ['helpScan'](T) {
+  /*async ['helpScan'](T) {
     let p = T["split"]('&'),
         C = p[0],
         S = p[1];
@@ -877,7 +874,7 @@ a['data']['popUp']['taskRewardName'] ='';
     }
 
     Z["result"] == 1 ? (await _0x3de8b8["wait"](100), await this["helpInvite"](T)) : console["log"]("账号[" + this["name"] + "]模拟邀请二维码扫描失败：" + Z["error_msg"]);
-  }
+  }*/
 
   async ["bindInfo"]() {
     let c = "https://www.kuaishoupay.com/pay/account/h5/provider/bind_info",
@@ -961,33 +958,33 @@ a['data']['popUp']['taskRewardName'] ='';
         await _0x3de8b8["wait"](200);
       }
 
-      if (Z["task"][_0x1e4967["luckydraw"]]["needRun"]) {
-        for (let U = 0; U < Z["task"][_0x1e4967["luckydraw"]]["num"]; U++) {
-          await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_161_213"]), await _0x3de8b8["wait"](200), await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_11_213"]), await _0x3de8b8["wait"](200),await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_161_100"]), await _0x3de8b8["wait"](200), await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_11_100"]), await _0x3de8b8['wait'](200);
-        }
-      }
+      // if (Z["task"][_0x1e4967["luckydraw"]]["needRun"]) {
+      //   for (let U = 0; U < Z["task"][_0x1e4967["luckydraw"]]["num"]; U++) {
+      //     await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_161_213"]), await _0x3de8b8["wait"](200), await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_11_213"]), await _0x3de8b8["wait"](200),await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_161_100"]), await _0x3de8b8["wait"](200), await Z["ksNeoAdParam"](_0x10d9f8["luckdrawVideo_11_100"]), await _0x3de8b8['wait'](200);
+      //   }
+      // }
 
-      if (Z["task"][_0x1e4967['ad']]['needRun']) {
-        for (let J = 0; J < Z["task"][_0x1e4967['ad']]["num"]; J++) {
-          await Z["ksAdParam"](_0x351e94["ad1"]);
-          await _0x3de8b8["wait"](200);
-          J != Z["task"][_0x1e4967['ad']]["num"] - 1 && (await _0x3de8b8["wait"](2000));
-        }
-      }
+      // if (Z["task"][_0x1e4967['ad']]['needRun']) {
+      //   for (let J = 0; J < Z["task"][_0x1e4967['ad']]["num"]; J++) {
+      //     await Z["ksAdParam"](_0x351e94["ad1"]);
+      //     await _0x3de8b8["wait"](200);
+      //     J != Z["task"][_0x1e4967['ad']]["num"] - 1 && (await _0x3de8b8["wait"](2000));
+      //   }
+      // }
 
-      if (Z["task"][_0x1e4967['gj']]["needRun"]) {
-        for (let V = 0; V < Z["task"][_0x1e4967['gj']]["num"]; V++) {
-          await Z["ksgj"]()[[]];
-          await _0x3de8b8["wait"](200);
-        }
-      }
+      // if (Z["task"][_0x1e4967['gj']]["needRun"]) {
+      //   for (let V = 0; V < Z["task"][_0x1e4967['gj']]["num"]; V++) {
+      //     await Z["ksgj"]()[[]];
+      //     await _0x3de8b8["wait"](200);
+      //   }
+      // }
 
-      if (Z["task"][_0x1e4967["live"]]["needRun"]) {
-        for (let E = 0; E < Z["task"][_0x1e4967["live"]]["num"]; E++) {
-          await Z["ksNeoAdParam"](_0x10d9f8["liveVideo_75"]);
-          await _0x3de8b8['wait'](200);
-        }
-      }
+      // if (Z["task"][_0x1e4967["live"]]["needRun"]) {
+      //   for (let E = 0; E < Z["task"][_0x1e4967["live"]]["num"]; E++) {
+      //     await Z["ksNeoAdParam"](_0x10d9f8["liveVideo_75"]);
+      //     await _0x3de8b8['wait'](200);
+      //   }
+      // }
     }
 
     console["log"]("\n============== 账户情况 ==============");
@@ -1024,7 +1021,7 @@ a['data']['popUp']['taskRewardName'] ='';
     if (_0x5718d8["length"] > 0) {
       for (let A of p) {
         for (let k of _0x5718d8) {
-          await A["helpScan"](k);
+          // await A["helpScan"](k);
           await _0x3de8b8["wait"](200);
         }
       }
@@ -1087,7 +1084,7 @@ async function _0x577f0c() {
     return;
   }
 
-  notifyBody = "快手极速版运行通知\n\n" + _0x279d25;
+  notifyBody = "慢脚龟速版低保运行通知\n\n" + _0x279d25;
 
   if (_0x113109 > 0) {
     _0x3de8b8["msg"](notifyBody);
