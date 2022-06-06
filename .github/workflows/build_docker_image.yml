@@ -20,7 +20,7 @@ on:
         default: 'warning'
       tags:
         required: true
-        description: '1.6'
+        description: '手动输入版本号'
 
 jobs:
   buildx:
