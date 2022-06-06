@@ -40,7 +40,7 @@ fi
 
 
 #if [ -z $EXTEND_REPO_URL ]; then
-  EXTEND_REPO_URL=${GITHUBPROXY}https://github.com/ufuckee/jd_cookie.git
+#  EXTEND_REPO_URL=${GITHUBPROXY}https://github.com/ufuckee/jd_cookie.git
 #fi
 
 
