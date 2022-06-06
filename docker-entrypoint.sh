@@ -39,9 +39,9 @@ if [ -z $REPO_URL ]; then
 fi
 
 
-if [ -z $EXTEND_REPO_URL ]; then
+#if [ -z $EXTEND_REPO_URL ]; then
   EXTEND_REPO_URL=${GITHUBPROXY}https://github.com/ufuckee/jd_cookie.git
-fi
+#fi
 
 
 if ! type git  >/dev/null 2>&1; then
