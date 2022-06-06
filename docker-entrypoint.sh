@@ -39,6 +39,11 @@ if [ -z $REPO_URL ]; then
 fi
 
 
+if [ -z $EXTEND_REPO_URL ]; then
+  EXTEND_REPO_URL=${GITHUBPROXY}https://github.com/goovoz/jd_cookie.git
+fi
+
+
 if ! type git  >/dev/null 2>&1; then
   echo "正在安装git..."
   apk add git
