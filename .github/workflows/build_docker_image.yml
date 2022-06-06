@@ -20,7 +20,7 @@ on:
         default: 'warning'
       tags:
         required: true
-        description: '请填写镜像版本号，如1.0'
+        description: '1.6'
 
 jobs:
   buildx:
@@ -60,5 +60,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
 # 给清单打上多个标签
           tags: |
-            nuanxinqing123/qltools:latest
-            nuanxinqing123/qltools:${{github.event.inputs.tags}}
+            ${{ secrets.DOCKER_USERNAME }}/qltools:latest
+            ${{ secrets.DOCKER_USERNAME }}/qltools:${{github.event.inputs.tags}}
