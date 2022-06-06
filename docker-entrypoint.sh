@@ -39,11 +39,6 @@ if [ -z $REPO_URL ]; then
 fi
 
 
-#if [ -z $EXTEND_REPO_URL ]; then
-#  EXTEND_REPO_URL=${GITHUBPROXY}https://github.com/ufuckee/jd_cookie.git
-#fi
-
-
 if ! type git  >/dev/null 2>&1; then
   echo "正在安装git..."
   apk add git
@@ -92,12 +87,12 @@ fi
 
 if [ ! -f $CODE_DIR/dev.go ]; then
   echo "dev.go 不存在  添加 dev.go"
-  cd $CODE_DIR && wget -O dev.go ${GITHUBPROXY}https://raw.githubusercontent.com/LeanFly/SillyGirlDockerDeploy/main/dev.go
+  cd $CODE_DIR && wget -O dev.go ${GITHUBPROXY}https://raw.githubusercontent.com/goovoz/carry/sillgirl-build/dev.go
 else
   echo "dev.go 已存在  备份 dev.go"
   cd $CODE_DIR && mv dev.go dev.go.bak
   echo "下载最新 dev.go"
-  cd $CODE_DIR && wget -O dev.go ${GITHUBPROXY}https://raw.githubusercontent.com/LeanFly/SillyGirlDockerDeploy/main/dev.go
+  cd $CODE_DIR && wget -O dev.go ${GITHUBPROXY}https://raw.githubusercontent.com/goovoz/carry/sillgirl-build/dev.go
 fi
 if [ ! -f $CODE_DIR/dev.go ]; then
   echo "远程获取dev.go失败，从备份恢复"
@@ -106,7 +101,7 @@ fi
 
 if [ ! -f $CONF_DIR/sets.conf ]; then
   echo "sets.conf 不存在，添加sets.conf"
-  cd $CONF_DIR &&  wget -O sets.conf ${GITHUBPROXY}https://raw.githubusercontent.com/LeanFly/SillyGirlDockerDeploy/main/sets.conf
+  cd $CONF_DIR &&  wget -O sets.conf ${GITHUBPROXY}https://raw.githubusercontent.com/goovoz/carry/sillgirl-build/sets.conf
 else
   echo "sets.conf已存在"
 fi
