@@ -3,6 +3,10 @@ JoinCommon金币卡开卡专用
 
 只开卡 加购 抽奖 无助力也无内置助力
 
+支持类型：
+https://lzdz1-isv.isvjcloud.com/m/unite/dzlh0001?activityId=< 活动ID >&venderId=1000090821&adSource=QCJKKX
+https://lzdz1-isv.isvjcloud.com/dingzhi/joinCommon/activity/activity?activityId=< 活动ID >
+
 //export jd_opencard_blacklist="" // 黑名单 用&隔开 pin值
 //export JD_LZ_OPENCARD="false" //关闭开卡相关活动运行
 
